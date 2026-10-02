@@ -1,0 +1,52 @@
+/* Kiosk shell styles. Components use inline styles; this is layout + screens. */
+:root {
+  --bg: #0b0906;
+  --amber: #ffb347;
+  --amber-deep: #ff7a1a;
+  --brass: #c9973f;
+  --ink: #f5ead6;
+  --dim: #8a7a5f;
+}
+html, body, #root { height: 100%; }
+body { font-family: system-ui, -apple-system, sans-serif; color: var(--ink); }
+
+.kiosk { position: fixed; inset: 0; background: var(--bg); overflow: hidden; user-select: none; }
+.kiosk .avatar-layer { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.kiosk canvas.avatar { width: min(100vw, 100vh); height: min(100vw, 100vh); }
+.kiosk .ui-layer { position: absolute; inset: 0; pointer-events: none; }
+.kiosk .ui-layer.interactive { pointer-events: auto; }
+
+.caption-bar {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 9vh; max-width: 86vw; text-align: center;
+  font-size: clamp(28px, 4.2vw, 64px); line-height: 1.25; font-weight: 600;
+  color: var(--ink); text-shadow: 0 2px 18px rgba(0,0,0,.9);
+}
+.screen-center {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 0 8vw;
+}
+.screen-center h1 { font-size: clamp(34px, 5vw, 76px); margin: 0 0 2vh; font-weight: 700; }
+.screen-center p { font-size: clamp(20px, 2.6vw, 40px); color: var(--dim); margin: 1vh 0; max-width: 60ch; }
+.screen-center .big { color: var(--amber); }
+
+.qr-card {
+  background: rgba(20, 16, 12, .92); border: 2px solid var(--brass); border-radius: 24px;
+  padding: 4vh 4vw; display: flex; flex-direction: column; align-items: center; gap: 2vh;
+}
+.qr-card img { width: min(38vh, 60vw); height: min(38vh, 60vw); border-radius: 12px; background: #fff; }
+.qr-card .expiry { color: var(--dim); font-size: clamp(16px, 2vw, 28px); }
+
+.error-banner {
+  position: absolute; top: 0; left: 0; right: 0; padding: 2vh;
+  background: #5a1a1a; color: #ffd9d9; text-align: center;
+  font-size: clamp(18px, 2.4vw, 34px);
+}
+.still-there {
+  position: absolute; top: 6vh; left: 50%; transform: translateX(-50%);
+  font-size: clamp(24px, 3.4vw, 52px); color: var(--amber);
+  background: rgba(20,16,12,.85); padding: 1.5vh 3vw; border-radius: 16px;
+  border: 1px solid var(--brass);
+}
+.hold-wrap { position: absolute; bottom: 22vh; left: 50%; transform: translateX(-50%); pointer-events: auto; }
+video.vision-src { position: absolute; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
